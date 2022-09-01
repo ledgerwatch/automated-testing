@@ -1,0 +1,5 @@
+pytest==6.2.4
+requests==2.26.0
+web3
+rlp==2.0.1
+py-solc-x
