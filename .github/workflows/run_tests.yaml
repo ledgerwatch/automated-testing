@@ -1,0 +1,45 @@
+name: Run Tests
+
+on:
+  workflow_dispatch
+
+jobs:
+  tests:
+    if: ${{ contains( github.event.pull_request.labels.*.name, 'run-tests' ) }}
+    container:
+      image: gatewayfm/erigon-automated-testing:latest
+      credentials:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+      ports:
+        - 5345:5345
+
+    services:
+      erigon:
+        image: thorax/erigon:devel
+        options: erigon --datadir=/data/eth-t --chain dev --private.api.addr=localhost:9091 --mine --http=false
+
+    runs-on:
+      - self-hosted
+      - dev
+
+    env:
+      ERIGON_URL: http://erigon:5345
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Check out code
+
+      - name: Run tests
+        id: api_tests
+        run: |
+          pytest -m "api or e2e_sanity" \
+            --url=$ERIGON_URL\
+            --junitxml=report/results.xml \
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: report/results.xml
+          check_name: "Test Results (dev)"
