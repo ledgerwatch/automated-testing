@@ -21,7 +21,7 @@ class TestMVPTestCase(MVPTestCase):
         [
             1, 10,
             pytest.param(300, marks=pytest.mark.skip(reason="https://github.com/ledgerwatch/erigon/issues/5183"),
-            ),
+                         ),
         ],
     )
     @pytest.mark.parametrize(
@@ -107,7 +107,7 @@ class TestMVPTestCase(MVPTestCase):
         )
         self.wait_for_transaction_to_be_removed_from_pool(transaction_hash)
         assert (
-            self.web3.eth.get_transaction_receipt(transaction_hash)["status"] == status
+                self.web3.eth.get_transaction_receipt(transaction_hash)["status"] == status
         ), f"Transaction status expected to be {status}"
 
     def test_transaction_send_erc20tokens(self):
@@ -123,7 +123,7 @@ class TestMVPTestCase(MVPTestCase):
         self.wait_for_transaction_to_be_removed_from_pool(transaction_hash)
         signed_txn = self.web3.eth.get_transaction_receipt(transaction_hash)
         assert (
-            signed_txn["status"] == 1
+                signed_txn["status"] == 1
         ), f"Transaction status is expected to be 1 but was 0 in {signed_txn}"
 
         deployed_contract_address = self.web3.eth.get_transaction_receipt(
@@ -158,7 +158,7 @@ class TestMVPTestCase(MVPTestCase):
 
         self.wait_for_transaction_to_be_removed_from_pool(token_transaction_hash)
         assert (
-            self.web3.eth.get_transaction_receipt(token_transaction_hash)["status"] == 1
+                self.web3.eth.get_transaction_receipt(token_transaction_hash)["status"] == 1
         ), f"Transaction status is expected to be 1 but was 0 in {signed_txn}, tx body sent {raw_txn}"
 
         sender_balance_after = contract.functions.balanceOf(self.sender_address).call()
@@ -225,3 +225,28 @@ class TestMVPTestCase(MVPTestCase):
             )
         except TypeError as e:
             assert str(e) == data_set["error"]
+
+    @pytest.mark.parametrize("transaction_template",
+                             [TransactionTemplates.legacy_transaction])
+    def test_replace_transaction(self, transaction_template):
+
+        transaction_template_low_gas_price = transaction_template(self.web3,
+                                                                  self.receiver_address,
+                                                                  self.sender_private_key)
+
+        transaction_template_low_gas_price.update(
+            {"gasPrice": int(self.web3.eth.gas_price / 1000)}
+        )
+        low_gas_price_txn_hash = self.send_transaction(transaction_template_low_gas_price)
+        low_gas_price_txn_nonce = self.web3.eth.get_transaction(low_gas_price_txn_hash)["nonce"]
+
+        assert low_gas_price_txn_hash in str(self.web3.geth.txpool.content())
+
+        transaction_template_low_gas_price.update(
+            {"gasPrice": int(self.web3.eth.gas_price * 3),
+             "nonce": low_gas_price_txn_nonce})
+
+        replacing_txn_hash = self.send_transaction(transaction_template_low_gas_price)
+
+        assert low_gas_price_txn_hash not in str(self.web3.geth.txpool.content())
+        self.wait_for_transaction_to_be_removed_from_pool(replacing_txn_hash)
