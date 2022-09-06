@@ -21,3 +21,5 @@ Please make sure you pull latest code before running the tests.
 
 1. For all tests to execute: run `python3 -m pytest` when being in `erigon-automated-testing` directory. In order to run specific test to run you may execute: `python3 -m pytest tests/test_block_creation_mvp.py::TestMVPTestCase::test_valid_transactions`
 2. In a case of failed tests results are printed on screen and detailed report is kept in result.xml
+
+Use --no-skips to run even 'skipped' tests
