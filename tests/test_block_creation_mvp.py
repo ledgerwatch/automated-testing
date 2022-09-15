@@ -31,6 +31,7 @@ class TestMVPTestCase(MVPTestCase):
             TransactionTemplates.eip1559_transaction,
         ],
     )
+    @pytest.mark.smoke_test
     def test_valid_transactions(self, number_of_transactions, transaction_template):
         successful_transactions = list()
         initial_block = self.web3.eth.get_block("latest", False)
