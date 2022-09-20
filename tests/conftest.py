@@ -36,7 +36,7 @@ def pytest_cmdline_preparse(config, args):
     if "--no-skips" not in args:
         return
 
-    def no_skip():
+    def no_skip(*args, **kwargs):
         return
 
     _pytest.skipping.skip = no_skip

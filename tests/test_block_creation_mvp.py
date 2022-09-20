@@ -32,7 +32,7 @@ class TestMVPTestCase(MVPTestCase):
         ],
     )
     @pytest.mark.smoke_test
-    def test_valid_transactions(self, number_of_transactions, transaction_template):
+    def test_batch_of_valid_transactions(self, number_of_transactions, transaction_template):
         successful_transactions = list()
         initial_block = self.web3.eth.get_block("latest", False)
 
