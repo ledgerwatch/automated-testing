@@ -1,6 +1,7 @@
+import time
+
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
-import time
 
 from tests.conftest import option
 
@@ -16,14 +17,14 @@ class MVPTestCase:
         ).hex()
         return transaction_hash
 
-    def check_transaction_is_in_pool(self, transaction_hash):
+    def transaction_is_in_pool(self, transaction_hash) -> bool:
         timeout = 10
         start_time = time.time()
         while time.time() - start_time <= timeout:
             txpool = self.web3.geth.txpool.content()
             if transaction_hash in str(txpool):
-                return
-        raise AssertionError(f"Transaction {transaction_hash} is not in tx pool")
+                return True
+        return False
 
     def transaction_pool_is_empty(self):
         txpool = self.web3.geth.txpool.content()
@@ -31,7 +32,7 @@ class MVPTestCase:
             return True
         return False
 
-    def wait_for_tx_pool_to_be_empty(self, timeout=60):
+    def tx_pool_is_empty(self, timeout=60) -> bool:
         start_time = time.time()
         while time.time() - start_time <= timeout:
             txpool = self.web3.geth.txpool.content()
@@ -40,14 +41,10 @@ class MVPTestCase:
             elif txpool["pending"]:
                 continue
             else:
-                return
-        raise TimeoutError(
-            f"Transactions pool is not empty after {timeout} sec:\n{txpool}"
-        )
+                return True
+        return False
 
-    def wait_for_transaction_to_be_removed_from_pool(
-        self, transaction_hash, timeout=60
-    ):
+    def transaction_is_removed_from_pool(self, transaction_hash, timeout=60) -> bool:
         start_time = time.time()
         while time.time() - start_time <= timeout:
             txpool = self.web3.geth.txpool.content()
@@ -64,10 +61,8 @@ class MVPTestCase:
             ]:
                 continue
             else:
-                return
-        raise TimeoutError(
-            f"Transaction {transaction_hash} is in the tx pool after {timeout} sec"
-        )
+                return True
+        return False
 
     def setup_method(self):
         self.web3 = Web3(Web3.HTTPProvider(endpoint_uri=option.url))

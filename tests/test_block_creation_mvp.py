@@ -62,7 +62,8 @@ class TestMVPTestCase(MVPTestCase):
 
         # check no transactions left in transaction pool
         for transaction_hash in successful_transactions:
-            self.wait_for_transaction_to_be_removed_from_pool(transaction_hash)
+            assert self.transaction_is_removed_from_pool(
+                transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
 
         # verify if batch of transactions fits into expected number of blocks
         latest_block_number = self.web3.eth.get_block("latest", False)
@@ -90,8 +91,9 @@ class TestMVPTestCase(MVPTestCase):
                 self.web3, self.receiver_address, self.sender_private_key
             )
         )
-        self.check_transaction_is_in_pool(transaction_hash)
-        self.wait_for_transaction_to_be_removed_from_pool(transaction_hash)
+        assert self.transaction_is_in_pool(transaction_hash), f"Transaction {transaction_hash} is not in tx pool"
+        assert self.transaction_is_removed_from_pool(
+            transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
 
     @pytest.mark.parametrize(
         "gas, status",
@@ -106,7 +108,8 @@ class TestMVPTestCase(MVPTestCase):
                 gas=gas,
             )
         )
-        self.wait_for_transaction_to_be_removed_from_pool(transaction_hash)
+        assert self.transaction_is_removed_from_pool(
+            transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
         assert (
                 self.web3.eth.get_transaction_receipt(transaction_hash)["status"] == status
         ), f"Transaction status expected to be {status}"
@@ -121,7 +124,8 @@ class TestMVPTestCase(MVPTestCase):
             )
         )
 
-        self.wait_for_transaction_to_be_removed_from_pool(transaction_hash)
+        assert self.transaction_is_removed_from_pool(
+            transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
         signed_txn = self.web3.eth.get_transaction_receipt(transaction_hash)
         assert (
                 signed_txn["status"] == 1
@@ -157,7 +161,8 @@ class TestMVPTestCase(MVPTestCase):
             signed_txn.rawTransaction
         ).hex()
 
-        self.wait_for_transaction_to_be_removed_from_pool(token_transaction_hash)
+        assert self.transaction_is_removed_from_pool(
+            token_transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
         assert (
                 self.web3.eth.get_transaction_receipt(token_transaction_hash)["status"] == 1
         ), f"Transaction status is expected to be 1 but was 0 in {signed_txn}, tx body sent {raw_txn}"
@@ -201,7 +206,7 @@ class TestMVPTestCase(MVPTestCase):
             assert all(
                 (e.args[0]["code"] == -32000, e.args[0]["message"] == data_set["error"])
             ), f"Got error {str(e)}"
-        self.wait_for_tx_pool_to_be_empty(timeout=5)
+        assert self.tx_pool_is_empty(timeout=5), "Transactions pool is not empty after 5 sec"
 
     @pytest.mark.parametrize(
         "transaction_template,data_set",
@@ -250,4 +255,5 @@ class TestMVPTestCase(MVPTestCase):
         replacing_txn_hash = self.send_transaction(transaction_template_low_gas_price)
 
         assert low_gas_price_txn_hash not in str(self.web3.geth.txpool.content())
-        self.wait_for_transaction_to_be_removed_from_pool(replacing_txn_hash)
+        assert self.transaction_is_removed_from_pool(
+            replacing_txn_hash), f"Transaction {replacing_txn_hash} is not removed from the tx pool"
