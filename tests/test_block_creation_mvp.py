@@ -114,14 +114,19 @@ class TestMVPTestCase(MVPTestCase):
                 self.web3.eth.get_transaction_receipt(transaction_hash)["status"] == status
         ), f"Transaction status expected to be {status}"
 
-    def test_transaction_send_erc20tokens(self):
-        transaction_hash = self.send_transaction(
-            ContractHelper.deploy_contract(
+    @pytest.mark.parametrize("contract_path", [
+        # "/ERC20_token.sol",
+        "/ERC721.sol"
+    ])
+    def test_transaction_send_erc20tokens(self, contract_path):
+        aa = ContractHelper.deploy_contract(
                 self.web3,
                 self.sender_private_key,
-                contract_path="/ERC20_token.sol",
+                contract_path=contract_path,
                 gas=5000000,
             )
+        transaction_hash = self.send_transaction(
+            aa
         )
 
         assert self.transaction_is_removed_from_pool(
@@ -134,9 +139,11 @@ class TestMVPTestCase(MVPTestCase):
         deployed_contract_address = self.web3.eth.get_transaction_receipt(
             transaction_hash
         )["contractAddress"]
-        abi = ContractHelper.compile_contract(contract_path="/ERC20_token.sol")["abi"]
+        abi = ContractHelper.compile_contract(contract_path=contract_path)["abi"]
 
         contract = self.web3.eth.contract(deployed_contract_address, abi=abi)
+
+        # contract.functions.mint(self.sender_address, 100).call()
 
         sender_balance_before = contract.functions.balanceOf(self.sender_address).call()
         receiver_balance_before = contract.functions.balanceOf(
@@ -149,22 +156,39 @@ class TestMVPTestCase(MVPTestCase):
             "gas": 6000000,
             "to": deployed_contract_address,
             "value": "0x0",
-            "data": contract.encodeABI("transfer", args=(self.receiver_address, 100)),
+            # "data": contract.encodeABI("transfer", args=(self.receiver_address, 100)),
+            "data": contract.encodeABI("transferFrom", args=(self.sender_address, self.receiver_address, 18)),
             "nonce": self.web3.eth.getTransactionCount(self.sender_address),
             "chainId": self.web3.eth.chain_id,
         }
 
+        # mint_txn = contract.functions.transferFrom(self.sender_address, self.receiver_address, 18).buildTransaction(
+        #     {
+        #         'from': self.sender_address,
+        #         'nonce': self.web3.eth.getTransactionCount(self.sender_address),
+        #         'gas': 6000000,
+        #         'gasPrice': self.web3.eth.gas_price,
+        #
+        #     }
+        # )
+        # signed_txn = self.web3.eth.account.sign_transaction(mint_txn, private_key=self.sender_private_key)
+        # sent_transaction = self.web3.eth.send_raw_transaction(signed_txn.rawTransaction)
+        # aa = self.web3.eth.get_transaction_receipt(sent_transaction.hex())
+
+
+
+
         signed_txn = self.web3.eth.account.signTransaction(
             raw_txn, self.sender_private_key
         )
-        token_transaction_hash = self.web3.eth.sendRawTransaction(
-            signed_txn.rawTransaction
-        ).hex()
+        sent_transaction = self.web3.eth.sendRawTransaction(signed_txn.rawTransaction)
+        token_transaction_hash = sent_transaction.hex()
 
         assert self.transaction_is_removed_from_pool(
             token_transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
+        aa = self.web3.eth.get_transaction_receipt(token_transaction_hash)
         assert (
-                self.web3.eth.get_transaction_receipt(token_transaction_hash)["status"] == 1
+                aa["status"] == 1
         ), f"Transaction status is expected to be 1 but was 0 in {signed_txn}, tx body sent {raw_txn}"
 
         sender_balance_after = contract.functions.balanceOf(self.sender_address).call()

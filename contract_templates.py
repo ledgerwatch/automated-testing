@@ -18,7 +18,8 @@ class ContractHelper:
                 )
 
         contract_interface = compile_source_file()[
-            "<stdin>:MySimpleToken"
+            # "<stdin>:MySimpleToken"
+            "<stdin>:MyNFT"
         ]  # Compiled source code
 
         return {
@@ -34,7 +35,8 @@ class ContractHelper:
             bytecode=abi_bytecode["bytecode"],
         )
         account = web3.eth.account.privateKeyToAccount(private_key)
-        return contract_.constructor("SERGEY2", "SRG2").buildTransaction(
+        # return contract_.constructor("SERGEY2", "SRG2").buildTransaction(
+        return contract_.constructor().buildTransaction(
             {
                 "from": account.address,
                 "nonce": web3.eth.get_transaction_count(account.address),
