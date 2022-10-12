@@ -114,13 +114,22 @@ class TestMVPTestCase(MVPTestCase):
                 self.web3.eth.get_transaction_receipt(transaction_hash)["status"] == status
         ), f"Transaction status expected to be {status}"
 
-    def test_transaction_send_erc20tokens(self):
+    @pytest.mark.parametrize(
+        "contract_path, contract_name, token_name, token_symbol, amount", [
+            ("/ERC20_token.sol", "MySimpleToken", "SERGEY2", "SRG2", 100),
+            ("/ERC721.sol", "MyNFT", None, None, 1)
+        ]
+    )
+    def test_transaction_send_tokens(self, contract_path, contract_name, token_name, token_symbol, amount):
         transaction_hash = self.send_transaction(
             ContractHelper.deploy_contract(
-                self.web3,
-                self.sender_private_key,
-                contract_path="/ERC20_token.sol",
+                web3=self.web3,
+                private_key=self.sender_private_key,
+                contract_path=contract_path,
+                contract_name=contract_name,
                 gas=5000000,
+                token_name=token_name,
+                token_symbol=token_symbol
             )
         )
 
@@ -131,10 +140,8 @@ class TestMVPTestCase(MVPTestCase):
                 signed_txn["status"] == 1
         ), f"Transaction status is expected to be 1 but was 0 in {signed_txn}"
 
-        deployed_contract_address = self.web3.eth.get_transaction_receipt(
-            transaction_hash
-        )["contractAddress"]
-        abi = ContractHelper.compile_contract(contract_path="/ERC20_token.sol")["abi"]
+        deployed_contract_address = self.web3.eth.get_transaction_receipt(transaction_hash)["contractAddress"]
+        abi = ContractHelper.compile_contract(contract_path=contract_path, contract_name=contract_name)["abi"]
 
         contract = self.web3.eth.contract(deployed_contract_address, abi=abi)
 
@@ -143,13 +150,19 @@ class TestMVPTestCase(MVPTestCase):
             self.receiver_address
         ).call()
 
+        if "ERC20" in contract_path:
+            data = contract.encodeABI("transfer", args=(self.receiver_address, amount))
+        else:
+            data = contract.encodeABI("transferFrom", args=(
+                self.sender_address, self.receiver_address, contract.functions.tokenId().call()))
+
         raw_txn = {
             "from": self.sender_address,
             "gasPrice": self.web3.eth.gas_price,
             "gas": 6000000,
             "to": deployed_contract_address,
             "value": "0x0",
-            "data": contract.encodeABI("transfer", args=(self.receiver_address, 100)),
+            "data": data,
             "nonce": self.web3.eth.getTransactionCount(self.sender_address),
             "chainId": self.web3.eth.chain_id,
         }
@@ -157,9 +170,8 @@ class TestMVPTestCase(MVPTestCase):
         signed_txn = self.web3.eth.account.signTransaction(
             raw_txn, self.sender_private_key
         )
-        token_transaction_hash = self.web3.eth.sendRawTransaction(
-            signed_txn.rawTransaction
-        ).hex()
+        sent_transaction = self.web3.eth.sendRawTransaction(signed_txn.rawTransaction)
+        token_transaction_hash = sent_transaction.hex()
 
         assert self.transaction_is_removed_from_pool(
             token_transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
@@ -168,7 +180,7 @@ class TestMVPTestCase(MVPTestCase):
         ), f"Transaction status is expected to be 1 but was 0 in {signed_txn}, tx body sent {raw_txn}"
 
         sender_balance_after = contract.functions.balanceOf(self.sender_address).call()
-        assert sender_balance_after == (sender_balance_before - 100), (
+        assert sender_balance_after == (sender_balance_before - amount), (
             f"Sender address {self.sender_address} balance was {sender_balance_before} "
             f"but is {sender_balance_after} after transaction has been mined"
         )
@@ -176,7 +188,7 @@ class TestMVPTestCase(MVPTestCase):
         receiver_balance_after = contract.functions.balanceOf(
             self.receiver_address
         ).call()
-        assert receiver_balance_after == (receiver_balance_before + 100), (
+        assert receiver_balance_after == (receiver_balance_before + amount), (
             f"Receiver address {self.receiver_address} balance was {receiver_balance_before} "
             f"but is {receiver_balance_after} after transaction has been mined"
         )
