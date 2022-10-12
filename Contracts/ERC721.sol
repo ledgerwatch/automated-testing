@@ -202,14 +202,18 @@ contract ERC721 is IERC721 {
 
         emit Transfer(owner, address(0), id);
     }
+
+     function tokenId() public view virtual returns (uint256) {
+        return 20000000000 * 10**uint(18);
+    }
 }
 
 contract MyNFT is Context, ERC721 {
+
+    uint private _tokenId;
+
     constructor() ERC721() {
-        // Mint 100 tokens to msg.sender
-        // Similar to how
-        // 1 dollar = 100 cents
-        // 1 token = 1 * (10 ** decimals)
-        _mint(msg.sender, 20000000000 * 10**uint(18));
+        _tokenId = tokenId();
+        _mint(msg.sender, _tokenId);
     }
 }

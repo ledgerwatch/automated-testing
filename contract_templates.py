@@ -2,14 +2,12 @@ import os
 
 import solcx
 
-from transaction_templates import TransactionTemplates
-
 contracts_path = os.environ.get("MOCKS_DIR", f"{os.path.dirname(__file__)}/Contracts")
 
 
 class ContractHelper:
     @staticmethod
-    def compile_contract(contract_path):
+    def compile_contract(contract_path, contract_name):
         def compile_source_file():
             solcx.install_solc("0.8.13")
             with open(contracts_path + contract_path, "r", encoding="utf-8") as f:
@@ -18,25 +16,28 @@ class ContractHelper:
                 )
 
         contract_interface = compile_source_file()[
-            # "<stdin>:MySimpleToken"
-            "<stdin>:MyNFT"
+            f"<stdin>:{contract_name}"
         ]  # Compiled source code
-
         return {
             "abi": contract_interface["abi"],
             "bytecode": contract_interface["bin"],
         }
 
     @staticmethod
-    def deploy_contract(web3, private_key, contract_path, gas=5000000):
-        abi_bytecode = ContractHelper.compile_contract(contract_path)
+    def deploy_contract(
+            web3, private_key, contract_path, contract_name, gas=5000000, token_name=None, token_symbol=None
+    ):
+        abi_bytecode = ContractHelper.compile_contract(contract_path, contract_name)
         contract_ = web3.eth.contract(
             abi=abi_bytecode["abi"],
             bytecode=abi_bytecode["bytecode"],
         )
         account = web3.eth.account.privateKeyToAccount(private_key)
-        # return contract_.constructor("SERGEY2", "SRG2").buildTransaction(
-        return contract_.constructor().buildTransaction(
+        if token_name and token_symbol:
+            contract_constructor = contract_.constructor(token_name, token_symbol)
+        else:
+            contract_constructor = contract_.constructor()
+        return contract_constructor.buildTransaction(
             {
                 "from": account.address,
                 "nonce": web3.eth.get_transaction_count(account.address),
