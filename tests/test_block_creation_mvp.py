@@ -19,9 +19,7 @@ class TestMVPTestCase(MVPTestCase):
     @pytest.mark.parametrize(
         "number_of_transactions",
         [
-            1, 10,
-            pytest.param(300, marks=pytest.mark.skip(reason="https://github.com/ledgerwatch/erigon/issues/5183"),
-                         ),
+            1, 10, 300
         ],
     )
     @pytest.mark.parametrize(
@@ -102,10 +100,13 @@ class TestMVPTestCase(MVPTestCase):
     def test_transaction_contract_deployment(self, gas, status):
         transaction_hash = self.send_transaction(
             ContractHelper.deploy_contract(
-                self.web3,
-                self.sender_private_key,
+                web3=self.web3,
+                private_key=self.sender_private_key,
                 contract_path="/ERC20_token.sol",
+                contract_name="MySimpleToken",
                 gas=gas,
+                token_name="SERGEY2",
+                token_symbol="SRG2"
             )
         )
         assert self.transaction_is_removed_from_pool(
