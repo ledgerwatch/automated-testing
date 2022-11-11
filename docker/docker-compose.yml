@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  erigon-node-1:
+    profiles:
+      - first
+    image: automated-testing-erigon:${ERIGON_TAG:-latest}
+    build:
+      context: .
+      dockerfile: erigon.Dockerfile
+      args:
+        ERIGON_TAG: ${ERIGON_TAG:-latest}
+        UID: ${DOCKER_UID:-1000}
+        GID: ${DOCKER_GID:-1000}
+    entrypoint:
+        - erigon
+        - --datadir=/home/erigon/.local/share/erigon
+        - --chain=dev
+        - --private.api.addr=localhost:9090
+        - --mine
+        - --http.api=admin,eth,erigon,web3,net,debug,trace,txpool,parity
+        - --http.addr=0.0.0.0
+        - --http.vhosts=*
+        - --http.corsdomain=*
+        - --http.port=8545
+    volumes:
+      - datadir1:/home/erigon/.local/share/erigon
+    user: ${DOCKER_UID:-1000}:${DOCKER_GID:-1000}
+    ports: [ "8545:8545" ]
+    restart: unless-stopped
+    mem_swappiness: 0
+
+  erigon-node-2:
+    profiles:
+      - second
+    image: automated-testing-erigon:${ERIGON_TAG:-latest}
+    build:
+      context: .
+      dockerfile: erigon.Dockerfile
+      args:
+        ERIGON_TAG: ${ERIGON_TAG:-latest}
+        UID: ${DOCKER_UID:-1000}
+        GID: ${DOCKER_GID:-1000}
+    entrypoint:
+        - erigon
+        - --datadir=/home/erigon/.local/share/erigon
+        - --chain=dev
+        - --private.api.addr=localhost:9090
+        - --mine
+        - --http.api=admin,eth,erigon,web3,net,debug,trace,txpool,parity
+        - --http.addr=0.0.0.0
+        - --http.vhosts=*
+        - --http.corsdomain=*
+        - --http.port=8545
+        - --staticpeers=$ENODE
+    volumes:
+      - datadir2:/home/erigon/.local/share/erigon
+    user: ${DOCKER_UID:-1000}:${DOCKER_GID:-1000}
+    ports: [ "8546:8545" ]
+    restart: unless-stopped
+    mem_swappiness: 0
+  
+  tests:
+    profiles: [ "tests" ]
+    image: thorax/automated-testing
+    build:
+      context: ../
+    volumes:
+      - ./report:/erigon-automated-testing/report
+    entrypoint: |
+      pytest tests --quiet --junitxml="./report/result.xml" --url="http://erigon-node-1:8545" --tb=line
+
+volumes:
+  datadir1:
+  datadir2:
