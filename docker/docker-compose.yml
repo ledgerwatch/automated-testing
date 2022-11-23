@@ -23,6 +23,7 @@ services:
         - --http.vhosts=*
         - --http.corsdomain=*
         - --http.port=8545
+        - --ws
     volumes:
       - datadir1:/home/erigon/.local/share/erigon
     user: ${DOCKER_UID:-1000}:${DOCKER_GID:-1000}
@@ -53,6 +54,7 @@ services:
         - --http.corsdomain=*
         - --http.port=8545
         - --staticpeers=$ENODE
+        - --ws
     volumes:
       - datadir2:/home/erigon/.local/share/erigon
     user: ${DOCKER_UID:-1000}:${DOCKER_GID:-1000}

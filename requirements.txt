@@ -1,5 +1,7 @@
 pytest==6.2.4
 requests==2.26.0
-web3
+web3==5.31.0
 rlp==2.0.1
 py-solc-x
+websocket-client==1.4.2
+dill==0.3.6

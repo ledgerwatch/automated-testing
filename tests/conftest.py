@@ -1,6 +1,8 @@
+import logging
 from dataclasses import dataclass
 import pytest
 import _pytest.skipping
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -27,6 +29,7 @@ option = Option()
 
 
 def pytest_configure(config):
+    logging.basicConfig(level=logging.INFO)
     global option
     option = config.option
 
