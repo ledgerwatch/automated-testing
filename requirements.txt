@@ -5,3 +5,5 @@ rlp==2.0.1
 py-solc-x
 websocket-client==1.4.2
 dill==0.3.6
+jsonschema~=4.16.0
+websockets~=9.1
