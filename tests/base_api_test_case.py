@@ -33,7 +33,7 @@ class BaseApiTestCase:
 
     def validate_schema(self, response, file_name):
         path = f"{schema_path}/{file_name}.json"
-        with open(path, "r") as schema:
+        with open(path, "r", encoding='utf-8') as schema:
             # try:
             response = response.json()
             # except AttributeError:
