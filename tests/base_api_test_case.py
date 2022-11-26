@@ -34,8 +34,8 @@ class BaseApiTestCase:
     def validate_schema(self, response, file_name):
         path = f"{schema_path}/{file_name}.json"
         with open(path, "r") as schema:
-            try:
-                response = response.json()
-            except AttributeError:
-                pass
+            # try:
+            response = response.json()
+            # except AttributeError:
+            #     pass
             jsonschema.validate(instance=response, schema=json.load(schema))
