@@ -1,10 +1,8 @@
 import logging
 from dataclasses import dataclass
-import pytest
-import _pytest.skipping
-from web3 import Web3
 
-from transaction_templates import TransactionTemplates
+import _pytest.skipping
+import pytest
 
 
 def pytest_addoption(parser):
@@ -51,8 +49,8 @@ def pytest_cmdline_preparse(config, args):
 def pytest_collection_modifyitems(items):
     api_tests, other_tests = list(), list()
     for item in items:
-        if 'api' in [i.name for i in items[0].own_markers]:
+        if 'api' in [i.name for i in item.own_markers]:
             api_tests.append(item)
         else:
             other_tests.append(item)
-    items = other_tests + api_tests
+    items[:] = other_tests + api_tests

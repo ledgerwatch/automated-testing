@@ -9,9 +9,11 @@ from tests.conftest import option
 
 
 class BaseApiTestCase:
-    def setup_class(self):
-        self.session = requests.Session()
-        self.session.headers.update({"Content-Type": "application/json"})
+
+    @classmethod
+    def setup_class(cls):
+        cls.session = requests.Session()
+        cls.session.headers.update({"Content-Type": "application/json"})
 
     def post(self, request_id, method, params=None, session=None):
         if session:
