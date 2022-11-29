@@ -1,3 +1,280 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:956b383933ec311c850df29428529f3f77fa8379af33886ec7689cbdcd3a4cc1
-size 10724
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "jsonrpc",
+        "id",
+        "result"
+    ],
+    "properties": {
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        },
+        "id": {
+            "type": [
+              "string",
+              "integer"
+            ],
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "result": {
+            "type": "array",
+            "default": [],
+            "title": "The result Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "action",
+                    "blockHash",
+                    "blockNumber",
+                    "result",
+                    "subtraces",
+                    "traceAddress",
+                    "transactionHash",
+                    "transactionPosition",
+                    "type"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "object",
+                        "default": {},
+                        "title": "The action Schema",
+                        "required": [
+                            "from",
+                            "gas",
+                            "value"
+                        ],
+                        "properties": {
+                            "from": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The from Schema",
+                                "examples": [
+                                    "0x67b1d87101671b127f5f8714789c7192f7ad340e"
+                                ]
+                            },
+                            "callType": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The callType Schema",
+                                "examples": [
+                                    "call"
+                                ]
+                            },
+                            "gas": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The gas Schema",
+                                "examples": [
+                                    "0x0"
+                                ]
+                            },
+                            "input": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The input Schema",
+                                "examples": [
+                                    "0x"
+                                ]
+                            },
+                            "to": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The to Schema",
+                                "examples": [
+                                    "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b"
+                                ]
+                            },
+                            "value": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The value Schema",
+                                "examples": [
+                                    "0x470de4df820000"
+                                ]
+                            }
+                        },
+                        "examples": [{
+                            "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                            "callType": "call",
+                            "gas": "0x0",
+                            "input": "0x",
+                            "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                            "value": "0x470de4df820000"
+                        }]
+                    },
+                    "blockHash": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The blockHash Schema",
+                        "examples": [
+                            "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990"
+                        ]
+                    },
+                    "blockNumber": {
+                        "type": "integer",
+                        "default": 0,
+                        "title": "The blockNumber Schema",
+                        "examples": [
+                            15
+                        ]
+                    },
+                    "result": {
+                        "type": "object",
+                        "default": {},
+                        "title": "The result Schema",
+                        "required": [
+                            "gasUsed"
+                        ],
+                        "properties": {
+                            "gasUsed": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The gasUsed Schema",
+                                "examples": [
+                                    "0x0"
+                                ]
+                            },
+                            "output": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The output Schema",
+                                "examples": [
+                                    "0x"
+                                ]
+                            }
+                        },
+                        "examples": [{
+                            "gasUsed": "0x0",
+                            "output": "0x"
+                        }]
+                    },
+                    "subtraces": {
+                        "type": "integer",
+                        "default": 0,
+                        "title": "The subtraces Schema",
+                        "examples": [
+                            0
+                        ]
+                    },
+                    "traceAddress": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The traceAddress Schema",
+                        "items": {},
+                        "examples": [
+                            []
+                        ]
+                    },
+                    "transactionHash": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The transactionHash Schema",
+                        "examples": [
+                            "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727"
+                        ]
+                    },
+                    "transactionPosition": {
+                        "type": "integer",
+                        "default": 0,
+                        "title": "The transactionPosition Schema",
+                        "examples": [
+                            0
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The type Schema",
+                        "examples": [
+                            "call"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "action": {
+                        "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                        "callType": "call",
+                        "gas": "0x0",
+                        "input": "0x",
+                        "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                        "value": "0x470de4df820000"
+                    },
+                    "blockHash": "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990",
+                    "blockNumber": 15,
+                    "result": {
+                        "gasUsed": "0x0",
+                        "output": "0x"
+                    },
+                    "subtraces": 0,
+                    "traceAddress": [],
+                    "transactionHash": "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727",
+                    "transactionPosition": 0,
+                    "type": "call"
+                }]
+            },
+            "examples": [
+                [{
+                    "action": {
+                        "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                        "callType": "call",
+                        "gas": "0x0",
+                        "input": "0x",
+                        "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                        "value": "0x470de4df820000"
+                    },
+                    "blockHash": "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990",
+                    "blockNumber": 15,
+                    "result": {
+                        "gasUsed": "0x0",
+                        "output": "0x"
+                    },
+                    "subtraces": 0,
+                    "traceAddress": [],
+                    "transactionHash": "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727",
+                    "transactionPosition": 0,
+                    "type": "call"
+                }]
+            ]
+        }
+    },
+    "examples": [{
+        "jsonrpc": "2.0",
+        "id": "0x4d",
+        "result": [{
+            "action": {
+                "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                "callType": "call",
+                "gas": "0x0",
+                "input": "0x",
+                "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                "value": "0x470de4df820000"
+            },
+            "blockHash": "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990",
+            "blockNumber": 15,
+            "result": {
+                "gasUsed": "0x0",
+                "output": "0x"
+            },
+            "subtraces": 0,
+            "traceAddress": [],
+            "transactionHash": "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727",
+            "transactionPosition": 0,
+            "type": "call"
+        }]
+    }]
+}

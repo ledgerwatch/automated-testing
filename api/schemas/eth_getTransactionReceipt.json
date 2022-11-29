@@ -1,3 +1,209 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b40ba50d11e30e8dd2c5774767a972a1d6bee1ba0d2505b50a504f2cbae7ac3d
-size 6798
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "jsonrpc",
+    "id",
+    "result"
+  ],
+  "properties": {
+    "jsonrpc": {
+      "type": "string",
+      "default": "",
+      "title": "The jsonrpc Schema",
+      "examples": [
+        "2.0"
+      ]
+    },
+    "id": {
+      "type": [
+        "string",
+        "integer"
+      ],
+      "default": "",
+      "title": "The id Schema",
+      "examples": [
+        "0x4d"
+      ]
+    },
+    "result": {
+      "type": "object",
+      "default": {},
+      "title": "The result Schema",
+      "required": [
+        "blockHash",
+        "blockNumber",
+        "contractAddress",
+        "cumulativeGasUsed",
+        "effectiveGasPrice",
+        "from",
+        "gasUsed",
+        "logs",
+        "logsBloom",
+        "status",
+        "to",
+        "transactionHash",
+        "transactionIndex",
+        "type"
+      ],
+      "properties": {
+        "blockHash": {
+          "type": "string",
+          "default": "",
+          "title": "The blockHash Schema",
+          "examples": [
+            "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990"
+          ]
+        },
+        "blockNumber": {
+          "type": "string",
+          "default": "",
+          "title": "The blockNumber Schema",
+          "examples": [
+            "0xf"
+          ]
+        },
+        "contractAddress": {
+          "type": "null",
+          "default": null,
+          "title": "The contractAddress Schema",
+          "examples": [
+            null
+          ]
+        },
+        "cumulativeGasUsed": {
+          "type": "string",
+          "default": "",
+          "title": "The cumulativeGasUsed Schema",
+          "examples": [
+            "0x5208"
+          ]
+        },
+        "effectiveGasPrice": {
+          "type": "string",
+          "default": "",
+          "title": "The effectiveGasPrice Schema",
+          "examples": [
+            "0x534d63a4"
+          ]
+        },
+        "from": {
+          "type": "string",
+          "default": "",
+          "title": "The from Schema",
+          "examples": [
+            "0x67b1d87101671b127f5f8714789c7192f7ad340e"
+          ]
+        },
+        "gasUsed": {
+          "type": "string",
+          "default": "",
+          "title": "The gasUsed Schema",
+          "examples": [
+            "0x5208"
+          ]
+        },
+        "logs": {
+          "type": "array",
+          "default": [],
+          "title": "The logs Schema",
+          "items": {},
+          "examples": [
+            []
+          ]
+        },
+        "logsBloom": {
+          "type": "string",
+          "default": "",
+          "title": "The logsBloom Schema",
+          "examples": [
+            "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "default": "",
+          "title": "The status Schema",
+          "examples": [
+            "0x1"
+          ]
+        },
+        "to": {
+          "type": "string",
+          "default": "",
+          "title": "The to Schema",
+          "examples": [
+            "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b"
+          ]
+        },
+        "transactionHash": {
+          "type": "string",
+          "default": "",
+          "title": "The transactionHash Schema",
+          "examples": [
+            "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727"
+          ]
+        },
+        "transactionIndex": {
+          "type": "string",
+          "default": "",
+          "title": "The transactionIndex Schema",
+          "examples": [
+            "0x0"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "default": "",
+          "title": "The type Schema",
+          "examples": [
+            "0x0"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "blockHash": "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990",
+          "blockNumber": "0xf",
+          "contractAddress": null,
+          "cumulativeGasUsed": "0x5208",
+          "effectiveGasPrice": "0x534d63a4",
+          "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+          "gasUsed": "0x5208",
+          "logs": [],
+          "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "status": "0x1",
+          "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+          "transactionHash": "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727",
+          "transactionIndex": "0x0",
+          "type": "0x0"
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "jsonrpc": "2.0",
+      "id": "0x4d",
+      "result": {
+        "blockHash": "0xcd1b08f0dc1bf191973eb9d6b5d57ded7005f08619e782d13d796b0b23e52990",
+        "blockNumber": "0xf",
+        "contractAddress": null,
+        "cumulativeGasUsed": "0x5208",
+        "effectiveGasPrice": "0x534d63a4",
+        "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+        "gasUsed": "0x5208",
+        "logs": [],
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "status": "0x1",
+        "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+        "transactionHash": "0xd94c3ee8cf03f168200c5b1d007b62caef7edfd63dda861cc03e0be5460f1727",
+        "transactionIndex": "0x0",
+        "type": "0x0"
+      }
+    }
+  ]
+}
