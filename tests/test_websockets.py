@@ -31,6 +31,7 @@ class TestWebSocketTestCase(WebSocketTestCase):
         return successful_transactions
 
     @pytest.mark.smoke_test
+    @pytest.mark.wss
     def test_eth_subscribe(self):
         subscription_results, transactions = self.create_connection(
             functions=[

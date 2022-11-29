@@ -70,7 +70,7 @@ services:
     volumes:
       - ./report:/erigon-automated-testing/report
     entrypoint: |
-      pytest tests --quiet --junitxml="./report/result.xml" --url="http://erigon-node-1:8545" --tb=line
+      pytest tests --junitxml="./report/result.xml" --url="http://erigon-node-1:8545"
 
 volumes:
   datadir1:
