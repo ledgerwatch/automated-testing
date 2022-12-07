@@ -29,7 +29,6 @@ class TestMVPTestCase(MVPTestCase):
             TransactionTemplates.eip1559_transaction,
         ],
     )
-    @pytest.mark.smoke_test
     def test_batch_of_valid_transactions(self, number_of_transactions, transaction_template):
         successful_transactions = list()
         initial_block = self.web3.eth.get_block("latest", False)
@@ -230,6 +229,7 @@ class TestMVPTestCase(MVPTestCase):
             test_data_2=wrong_payload_errors_eip1559,
         ),
     )
+    @pytest.mark.smoke_test
     def test_transaction_wrong_payload(self, transaction_template, data_set):
         template = form_template(
             transaction_template=transaction_template(
