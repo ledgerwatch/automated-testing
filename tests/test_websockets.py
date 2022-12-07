@@ -30,7 +30,6 @@ class TestWebSocketTestCase(WebSocketTestCase):
                 transaction_hash), f"Transaction {transaction_hash} is not removed from the tx pool"
         return successful_transactions
 
-    @pytest.mark.smoke_test
     @pytest.mark.wss
     def test_eth_subscribe(self):
         subscription_results, transactions = self.create_connection(
