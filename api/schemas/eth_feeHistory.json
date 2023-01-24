@@ -1,0 +1,140 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "id",
+        "jsonrpc",
+        "result"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        },
+        "result": {
+            "type": "object",
+            "default": {},
+            "title": "The result Schema",
+            "required": [
+                "baseFeePerGas",
+                "gasUsedRatio",
+                "oldestBlock"
+            ],
+            "properties": {
+                "baseFeePerGas": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The baseFeePerGas Schema",
+                    "items": {
+                        "type": "string",
+                        "title": "A Schema",
+                        "examples": [
+                            "0xa816ead",
+                            "0x934444f",
+                            "0x85cf66c",
+                            "0x753e0ce",
+                            "0x66a3b7e",
+                            "0x5ac5ce9"
+                        ]
+                    },
+                    "examples": [
+                        ["0xa816ead",
+                            "0x934444f",
+                            "0x85cf66c",
+                            "0x753e0ce",
+                            "0x66a3b7e",
+                            "0x5ac5ce9"
+                        ]
+                    ]
+                },
+                "gasUsedRatio": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The gasUsedRatio Schema",
+                    "items": {
+                        "type": "number",
+                        "title": "A Schema",
+                        "examples": [
+                            0.004482045501771731,
+                            0.13449938183063492,
+                            0.004737830629739461,
+                            0.0017890421170331718,
+                            0.03753323414686831
+                        ]
+                    },
+                    "examples": [
+                        [0.004482045501771731,
+                            0.13449938183063492,
+                            0.004737830629739461,
+                            0.0017890421170331718,
+                            0.03753323414686831
+                        ]
+                    ]
+                },
+                "oldestBlock": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The oldestBlock Schema",
+                    "examples": [
+                        "0x12"
+                    ]
+                }
+            },
+            "examples": [{
+                "baseFeePerGas": [
+                    "0xa816ead",
+                    "0x934444f",
+                    "0x85cf66c",
+                    "0x753e0ce",
+                    "0x66a3b7e",
+                    "0x5ac5ce9"
+                ],
+                "gasUsedRatio": [
+                    0.004482045501771731,
+                    0.13449938183063492,
+                    0.004737830629739461,
+                    0.0017890421170331718,
+                    0.03753323414686831
+                ],
+                "oldestBlock": "0x12"
+            }]
+        }
+    },
+    "examples": [{
+        "id": "0x4d",
+        "jsonrpc": "2.0",
+        "result": {
+            "baseFeePerGas": [
+                "0xa816ead",
+                "0x934444f",
+                "0x85cf66c",
+                "0x753e0ce",
+                "0x66a3b7e",
+                "0x5ac5ce9"
+            ],
+            "gasUsedRatio": [
+                0.004482045501771731,
+                0.13449938183063492,
+                0.004737830629739461,
+                0.0017890421170331718,
+                0.03753323414686831
+            ],
+            "oldestBlock": "0x12"
+        }
+    }]
+}

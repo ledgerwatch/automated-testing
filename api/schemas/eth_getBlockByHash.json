@@ -1,0 +1,501 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "jsonrpc",
+        "id",
+        "result"
+    ],
+    "properties": {
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        },
+        "id": {
+            "type": ["integer", "string"],
+            "default": 0,
+            "title": "The id Schema",
+            "examples": [
+                11
+            ]
+        },
+        "result": {
+            "type": "object",
+            "default": {},
+            "title": "The result Schema",
+            "required": [
+                "baseFeePerGas",
+                "difficulty",
+                "extraData",
+                "gasLimit",
+                "gasUsed",
+                "hash",
+                "logsBloom",
+                "miner",
+                "mixHash",
+                "nonce",
+                "number",
+                "parentHash",
+                "receiptsRoot",
+                "sha3Uncles",
+                "size",
+                "stateRoot",
+                "timestamp",
+                "totalDifficulty",
+                "transactions",
+                "transactionsRoot",
+                "uncles"
+            ],
+            "properties": {
+                "baseFeePerGas": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The baseFeePerGas Schema",
+                    "examples": [
+                        "0x753e0ce"
+                    ]
+                },
+                "difficulty": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The difficulty Schema",
+                    "examples": [
+                        "0x2"
+                    ]
+                },
+                "extraData": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The extraData Schema",
+                    "examples": [
+                        "0x000000000000000000000000000000000000000000000000000000000000000009d44257b81bceef40edd5647a0772e4101309e5029f4545ef0d18eeefecf4eb52196fcf7e47574a94f7bbd5c444531fedf589ead231daa0662589faa9881c7f00"
+                    ]
+                },
+                "gasLimit": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The gasLimit Schema",
+                    "examples": [
+                        "0xb31c0d"
+                    ]
+                },
+                "gasUsed": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The gasUsed Schema",
+                    "examples": [
+                        "0x5208"
+                    ]
+                },
+                "hash": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The hash Schema",
+                    "examples": [
+                        "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8"
+                    ]
+                },
+                "logsBloom": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The logsBloom Schema",
+                    "examples": [
+                        "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+                    ]
+                },
+                "miner": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The miner Schema",
+                    "examples": [
+                        "0x0000000000000000000000000000000000000000"
+                    ]
+                },
+                "mixHash": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The mixHash Schema",
+                    "examples": [
+                        "0x0000000000000000000000000000000000000000000000000000000000000000"
+                    ]
+                },
+                "nonce": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The nonce Schema",
+                    "examples": [
+                        "0x0000000000000000"
+                    ]
+                },
+                "number": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The number Schema",
+                    "examples": [
+                        "0x15"
+                    ]
+                },
+                "parentHash": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The parentHash Schema",
+                    "examples": [
+                        "0x4e852717cc4505d2100a139e390e5df00762a87cbfb23c17bf1569703fddec95"
+                    ]
+                },
+                "receiptsRoot": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The receiptsRoot Schema",
+                    "examples": [
+                        "0x056b23fbba480696b65fe5a59b8f2148a1299103c4f57df839233af2cf4ca2d2"
+                    ]
+                },
+                "sha3Uncles": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The sha3Uncles Schema",
+                    "examples": [
+                        "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+                    ]
+                },
+                "size": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The size Schema",
+                    "examples": [
+                        "0x2d6"
+                    ]
+                },
+                "stateRoot": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The stateRoot Schema",
+                    "examples": [
+                        "0xeba1e334bd0fdf754d339a5304613c48dbbe631b5bf28d179f8a5a90f93a0754"
+                    ]
+                },
+                "timestamp": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The timestamp Schema",
+                    "examples": [
+                        "0x63923380"
+                    ]
+                },
+                "totalDifficulty": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The totalDifficulty Schema",
+                    "examples": [
+                        "0x2b"
+                    ]
+                },
+                "transactions": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The transactions Schema",
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "title": "A Schema",
+                        "required": [
+                            "blockHash",
+                            "blockNumber",
+                            "from",
+                            "gas",
+                            "gasPrice",
+                            "hash",
+                            "input",
+                            "nonce",
+                            "to",
+                            "transactionIndex",
+                            "value",
+                            "type",
+                            "chainId",
+                            "v",
+                            "r",
+                            "s"
+                        ],
+                        "properties": {
+                            "blockHash": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The blockHash Schema",
+                                "examples": [
+                                    "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8"
+                                ]
+                            },
+                            "blockNumber": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The blockNumber Schema",
+                                "examples": [
+                                    "0x15"
+                                ]
+                            },
+                            "from": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The from Schema",
+                                "examples": [
+                                    "0x67b1d87101671b127f5f8714789c7192f7ad340e"
+                                ]
+                            },
+                            "gas": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The gas Schema",
+                                "examples": [
+                                    "0x5208"
+                                ]
+                            },
+                            "gasPrice": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The gasPrice Schema",
+                                "examples": [
+                                    "0x4cef575a"
+                                ]
+                            },
+                            "hash": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The hash Schema",
+                                "examples": [
+                                    "0xd534261916dd41e4032185226eb44ba7d05057c8fa10955f19fffeb99a7f43cb"
+                                ]
+                            },
+                            "input": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The input Schema",
+                                "examples": [
+                                    "0x"
+                                ]
+                            },
+                            "nonce": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The nonce Schema",
+                                "examples": [
+                                    "0x4e4"
+                                ]
+                            },
+                            "to": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The to Schema",
+                                "examples": [
+                                    "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b"
+                                ]
+                            },
+                            "transactionIndex": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The transactionIndex Schema",
+                                "examples": [
+                                    "0x0"
+                                ]
+                            },
+                            "value": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The value Schema",
+                                "examples": [
+                                    "0x470de4df820000"
+                                ]
+                            },
+                            "type": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The type Schema",
+                                "examples": [
+                                    "0x0"
+                                ]
+                            },
+                            "chainId": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The chainId Schema",
+                                "examples": [
+                                    "0x539"
+                                ]
+                            },
+                            "v": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The v Schema",
+                                "examples": [
+                                    "0xa95"
+                                ]
+                            },
+                            "r": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The r Schema",
+                                "examples": [
+                                    "0xcbb16cd7069bc7e58c3c5095c00a557d9827ad36fb9a7a1d78e18b5aceb74aea"
+                                ]
+                            },
+                            "s": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The s Schema",
+                                "examples": [
+                                    "0x55e0bb7333928b66637d816156e405dda026e2f460de532e266933d2b3eceac8"
+                                ]
+                            }
+                        },
+                        "examples": [{
+                            "blockHash": "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8",
+                            "blockNumber": "0x15",
+                            "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                            "gas": "0x5208",
+                            "gasPrice": "0x4cef575a",
+                            "hash": "0xd534261916dd41e4032185226eb44ba7d05057c8fa10955f19fffeb99a7f43cb",
+                            "input": "0x",
+                            "nonce": "0x4e4",
+                            "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                            "transactionIndex": "0x0",
+                            "value": "0x470de4df820000",
+                            "type": "0x0",
+                            "chainId": "0x539",
+                            "v": "0xa95",
+                            "r": "0xcbb16cd7069bc7e58c3c5095c00a557d9827ad36fb9a7a1d78e18b5aceb74aea",
+                            "s": "0x55e0bb7333928b66637d816156e405dda026e2f460de532e266933d2b3eceac8"
+                        }]
+                    },
+                    "examples": [
+                        [{
+                            "blockHash": "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8",
+                            "blockNumber": "0x15",
+                            "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                            "gas": "0x5208",
+                            "gasPrice": "0x4cef575a",
+                            "hash": "0xd534261916dd41e4032185226eb44ba7d05057c8fa10955f19fffeb99a7f43cb",
+                            "input": "0x",
+                            "nonce": "0x4e4",
+                            "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                            "transactionIndex": "0x0",
+                            "value": "0x470de4df820000",
+                            "type": "0x0",
+                            "chainId": "0x539",
+                            "v": "0xa95",
+                            "r": "0xcbb16cd7069bc7e58c3c5095c00a557d9827ad36fb9a7a1d78e18b5aceb74aea",
+                            "s": "0x55e0bb7333928b66637d816156e405dda026e2f460de532e266933d2b3eceac8"
+                        }]
+                    ]
+                },
+                "transactionsRoot": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The transactionsRoot Schema",
+                    "examples": [
+                        "0x54aa0318aa4c991c3c330b05c05280ee260ea8259185145337854a984ed67c8c"
+                    ]
+                },
+                "uncles": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The uncles Schema",
+                    "items": {},
+                    "examples": [
+                        []
+                    ]
+                }
+            },
+            "examples": [{
+                "baseFeePerGas": "0x753e0ce",
+                "difficulty": "0x2",
+                "extraData": "0x000000000000000000000000000000000000000000000000000000000000000009d44257b81bceef40edd5647a0772e4101309e5029f4545ef0d18eeefecf4eb52196fcf7e47574a94f7bbd5c444531fedf589ead231daa0662589faa9881c7f00",
+                "gasLimit": "0xb31c0d",
+                "gasUsed": "0x5208",
+                "hash": "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8",
+                "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                "miner": "0x0000000000000000000000000000000000000000",
+                "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "nonce": "0x0000000000000000",
+                "number": "0x15",
+                "parentHash": "0x4e852717cc4505d2100a139e390e5df00762a87cbfb23c17bf1569703fddec95",
+                "receiptsRoot": "0x056b23fbba480696b65fe5a59b8f2148a1299103c4f57df839233af2cf4ca2d2",
+                "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+                "size": "0x2d6",
+                "stateRoot": "0xeba1e334bd0fdf754d339a5304613c48dbbe631b5bf28d179f8a5a90f93a0754",
+                "timestamp": "0x63923380",
+                "totalDifficulty": "0x2b",
+                "transactions": [{
+                    "blockHash": "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8",
+                    "blockNumber": "0x15",
+                    "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                    "gas": "0x5208",
+                    "gasPrice": "0x4cef575a",
+                    "hash": "0xd534261916dd41e4032185226eb44ba7d05057c8fa10955f19fffeb99a7f43cb",
+                    "input": "0x",
+                    "nonce": "0x4e4",
+                    "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                    "transactionIndex": "0x0",
+                    "value": "0x470de4df820000",
+                    "type": "0x0",
+                    "chainId": "0x539",
+                    "v": "0xa95",
+                    "r": "0xcbb16cd7069bc7e58c3c5095c00a557d9827ad36fb9a7a1d78e18b5aceb74aea",
+                    "s": "0x55e0bb7333928b66637d816156e405dda026e2f460de532e266933d2b3eceac8"
+                }],
+                "transactionsRoot": "0x54aa0318aa4c991c3c330b05c05280ee260ea8259185145337854a984ed67c8c",
+                "uncles": []
+            }]
+        }
+    },
+    "examples": [{
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+            "baseFeePerGas": "0x753e0ce",
+            "difficulty": "0x2",
+            "extraData": "0x000000000000000000000000000000000000000000000000000000000000000009d44257b81bceef40edd5647a0772e4101309e5029f4545ef0d18eeefecf4eb52196fcf7e47574a94f7bbd5c444531fedf589ead231daa0662589faa9881c7f00",
+            "gasLimit": "0xb31c0d",
+            "gasUsed": "0x5208",
+            "hash": "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8",
+            "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "miner": "0x0000000000000000000000000000000000000000",
+            "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "nonce": "0x0000000000000000",
+            "number": "0x15",
+            "parentHash": "0x4e852717cc4505d2100a139e390e5df00762a87cbfb23c17bf1569703fddec95",
+            "receiptsRoot": "0x056b23fbba480696b65fe5a59b8f2148a1299103c4f57df839233af2cf4ca2d2",
+            "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+            "size": "0x2d6",
+            "stateRoot": "0xeba1e334bd0fdf754d339a5304613c48dbbe631b5bf28d179f8a5a90f93a0754",
+            "timestamp": "0x63923380",
+            "totalDifficulty": "0x2b",
+            "transactions": [{
+                "blockHash": "0x897eb052d78627992ffced3a69da797d0bb51c6704aa6ab6c831bbe0dd4232d8",
+                "blockNumber": "0x15",
+                "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
+                "gas": "0x5208",
+                "gasPrice": "0x4cef575a",
+                "hash": "0xd534261916dd41e4032185226eb44ba7d05057c8fa10955f19fffeb99a7f43cb",
+                "input": "0x",
+                "nonce": "0x4e4",
+                "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                "transactionIndex": "0x0",
+                "value": "0x470de4df820000",
+                "type": "0x0",
+                "chainId": "0x539",
+                "v": "0xa95",
+                "r": "0xcbb16cd7069bc7e58c3c5095c00a557d9827ad36fb9a7a1d78e18b5aceb74aea",
+                "s": "0x55e0bb7333928b66637d816156e405dda026e2f460de532e266933d2b3eceac8"
+            }],
+            "transactionsRoot": "0x54aa0318aa4c991c3c330b05c05280ee260ea8259185145337854a984ed67c8c",
+            "uncles": []
+        }
+    }]
+}

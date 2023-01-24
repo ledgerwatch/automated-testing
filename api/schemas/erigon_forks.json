@@ -1,0 +1,88 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "id",
+        "jsonrpc",
+        "result"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        },
+        "result": {
+            "type": "object",
+            "default": {},
+            "title": "The result Schema",
+            "required": [
+                "genesis"
+            ],
+            "properties": {
+                "forks": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The forks Schema",
+                    "items": {},
+                    "examples": [
+                        []
+                    ]
+                },
+                "genesis": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The genesis Schema",
+                    "examples": [
+                        "0xc493151b4991dd1bf459952509bba9bc3fb2b706299e18e36e6b78781835065d"
+                    ]
+                },
+                "heightForks": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The heightForks Schema",
+                    "items": {},
+                    "examples": [
+                        []
+                    ]
+                },
+                "timeForks": {
+                    "type": "null",
+                    "default": "",
+                    "title": "The timeForks Schema",
+                    "examples": [
+                        null
+                    ]
+                }
+            },
+            "examples": [{
+                "forks": [],
+                "genesis": "0xc493151b4991dd1bf459952509bba9bc3fb2b706299e18e36e6b78781835065d"
+            }]
+        }
+    },
+    "examples": [{
+        "id": "0x4d",
+        "jsonrpc": "2.0",
+        "result": {
+            "forks": [],
+            "genesis": "0xc493151b4991dd1bf459952509bba9bc3fb2b706299e18e36e6b78781835065d",
+            "heightForks": [],
+            "timeForks":null
+        }
+    }]
+}

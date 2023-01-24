@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "error",
+        "id",
+        "jsonrpc"
+    ],
+    "properties": {
+        "error": {
+            "type": "object",
+            "default": {},
+            "title": "The error Schema",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "const": -32601,
+                    "title": "The code Schema"
+                },
+                "message": {
+                    "type": "string",
+                    "const": "the method eth_signTypedData does not exist/is not available",
+                    "title": "The message Schema"
+                }
+            },
+            "examples": [{
+                "code":
+                    -32601,
+                "message": "the method eth_signTypedData does not exist/is not available"
+            }]
+        },
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        }
+    },
+    "examples": [{
+        "error": {
+            "code":
+                -32601,
+            "message": "the method eth_signTypedData does not exist/is not available"
+        },
+        "id": "0x4d",
+        "jsonrpc": "2.0"
+    }]
+}
