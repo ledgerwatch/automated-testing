@@ -1,165 +1,57 @@
 {
-    "$schema": "https://json-schema.org/schema",
-    "$id": "http://example.com/example.json",
-    "type": "object",
-    "default": {},
-    "title": "Root Schema",
-    "required": [
-        "jsonrpc",
-        "id",
-        "result"
-    ],
+    "$schema": "http://json-schema.org/schema#",
     "properties": {
-        "jsonrpc": {
-            "type": "string",
-            "default": "",
-            "title": "The jsonrpc Schema",
-            "examples": [
-                "2.0"
-            ]
-        },
         "id": {
-            "type": "string",
-            "default": "",
-            "title": "The id Schema",
-            "examples": [
-                "0x4d"
-            ]
+            "type": "string"
+        },
+        "jsonrpc": {
+            "type": "string"
         },
         "result": {
-            "type": "array",
-            "default": [],
-            "title": "The result Schema",
             "items": {
-                "type": "object",
-                "default": {},
-                "title": "A Schema",
+                "properties": {
+                    "result": {
+                        "properties": {
+                            "from": {
+                                "type": "string"
+                            },
+                            "gas": {
+                                "type": "string"
+                            },
+                            "gasUsed": {
+                                "type": "string"
+                            },
+                            "input": {
+                                "type": "string"
+                            },
+                            "output": {
+                                "type": "string"
+                            },
+                            "to": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
                 "required": [
                     "result"
                 ],
-                "properties": {
-                    "result": {
-                        "type": "object",
-                        "default": {},
-                        "title": "The result Schema",
-                        "required": [
-                            "from",
-                            "gas",
-                            "gasUsed",
-                            "to",
-                            "input",
-                            "value",
-                            "type"
-                        ],
-                        "properties": {
-                            "from": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The from Schema",
-                                "examples": [
-                                    "0x67b1d87101671b127f5f8714789c7192f7ad340e"
-                                ]
-                            },
-                            "gas": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The gas Schema",
-                                "examples": [
-                                    "0x5b376c"
-                                ]
-                            },
-                            "gasUsed": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The gasUsed Schema",
-                                "examples": [
-                                    "0xd907"
-                                ]
-                            },
-                            "to": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The to Schema",
-                                "examples": [
-                                    "0x78bc89afcb4c804e5013948e63dabf055e6ac076"
-                                ]
-                            },
-                            "input": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The input Schema",
-                                "examples": [
-                                    "0x23b872dd00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000409f9cbc7c4a04c220000000"
-                                ]
-                            },
-                            "value": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The value Schema",
-                                "examples": [
-                                    "0x0"
-                                ]
-                            },
-                            "type": {
-                                "type": "string",
-                                "default": "",
-                                "title": "The type Schema",
-                                "examples": [
-                                    "CALL"
-                                ]
-                            }
-                        },
-                        "examples": [{
-                            "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
-                            "gas": "0x5b376c",
-                            "gasUsed": "0xd907",
-                            "to": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
-                            "input": "0x23b872dd00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000409f9cbc7c4a04c220000000",
-                            "value": "0x0",
-                            "type": "CALL"
-                        }]
-                    }
-                },
-                "examples": [{
-                    "result": {
-                        "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
-                        "gas": "0x5b376c",
-                        "gasUsed": "0xd907",
-                        "to": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
-                        "input": "0x23b872dd00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000409f9cbc7c4a04c220000000",
-                        "value": "0x0",
-                        "type": "CALL"
-                    }
-                }]
+                "type": "object"
             },
-            "examples": [
-                [{
-                    "result": {
-                        "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
-                        "gas": "0x5b376c",
-                        "gasUsed": "0xd907",
-                        "to": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
-                        "input": "0x23b872dd00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000409f9cbc7c4a04c220000000",
-                        "value": "0x0",
-                        "type": "CALL"
-                    }
-                }]
-            ]
+            "type": "array"
         }
     },
-    "examples": [{
-        "jsonrpc": "2.0",
-        "id": "0x4d",
-        "result": [{
-            "result": {
-                "from": "0x67b1d87101671b127f5f8714789c7192f7ad340e",
-                "gas": "0x5b376c",
-                "gasUsed": "0xd907",
-                "to": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
-                "input": "0x23b872dd00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000409f9cbc7c4a04c220000000",
-                "value": "0x0",
-                "type": "CALL"
-            }
-        }]
-    }]
+    "required": [
+        "id",
+        "jsonrpc",
+        "result"
+    ],
+    "type": "object"
 }
