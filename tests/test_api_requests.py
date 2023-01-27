@@ -123,6 +123,7 @@ class TestApiRequest(BaseApiTestCase):
     @pytest.mark.api
     @pytest.mark.parametrize(
         "method", (
+                "debug_traceBlockByNumber",
                 "trace_filter",
                 "eth_getTransactionReceipt",
                 "trace_block",
