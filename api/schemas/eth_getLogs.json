@@ -1,0 +1,193 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "jsonrpc",
+        "id",
+        "result"
+    ],
+    "properties": {
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        },
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "result": {
+            "type": "array",
+            "default": [],
+            "title": "The result Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "address",
+                    "topics",
+                    "data",
+                    "blockNumber",
+                    "transactionHash",
+                    "transactionIndex",
+                    "blockHash",
+                    "logIndex",
+                    "removed"
+                ],
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The address Schema",
+                        "examples": [
+                            "0x78bc89afcb4c804e5013948e63dabf055e6ac076"
+                        ]
+                    },
+                    "topics": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The topics Schema",
+                        "items": {
+                            "type": "string",
+                            "title": "A Schema",
+                            "examples": [
+                                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                                "0x00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e",
+                                "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                                "0x0000000000000000000000000000000000000000409f9cbc7c4a04c220000000"
+                            ]
+                        },
+                        "examples": [
+                            ["0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                                "0x00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e",
+                                "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                                "0x0000000000000000000000000000000000000000409f9cbc7c4a04c220000000"
+                            ]
+                        ]
+                    },
+                    "data": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The data Schema",
+                        "examples": [
+                            "0x"
+                        ]
+                    },
+                    "blockNumber": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The blockNumber Schema",
+                        "examples": [
+                            "0xe"
+                        ]
+                    },
+                    "transactionHash": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The transactionHash Schema",
+                        "examples": [
+                            "0x893987db9ab8033c1f8d05fb256f979b62fc932ca5b09eec12ef9ddacf53776d"
+                        ]
+                    },
+                    "transactionIndex": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The transactionIndex Schema",
+                        "examples": [
+                            "0x0"
+                        ]
+                    },
+                    "blockHash": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The blockHash Schema",
+                        "examples": [
+                            "0xdb1662207b6c3f9114accdd5195d8e49cc1ea3fa27c8941827206d1a724850c5"
+                        ]
+                    },
+                    "logIndex": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The logIndex Schema",
+                        "examples": [
+                            "0x0"
+                        ]
+                    },
+                    "removed": {
+                        "type": "boolean",
+                        "default": false,
+                        "title": "The removed Schema",
+                        "examples": [
+                            false
+                        ]
+                    }
+                },
+                "examples": [{
+                    "address": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
+                    "topics": [
+                        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                        "0x00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e",
+                        "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                        "0x0000000000000000000000000000000000000000409f9cbc7c4a04c220000000"
+                    ],
+                    "data": "0x",
+                    "blockNumber": "0xe",
+                    "transactionHash": "0x893987db9ab8033c1f8d05fb256f979b62fc932ca5b09eec12ef9ddacf53776d",
+                    "transactionIndex": "0x0",
+                    "blockHash": "0xdb1662207b6c3f9114accdd5195d8e49cc1ea3fa27c8941827206d1a724850c5",
+                    "logIndex": "0x0",
+                    "removed": false
+                }]
+            },
+            "examples": [
+                [{
+                    "address": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
+                    "topics": [
+                        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                        "0x00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e",
+                        "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                        "0x0000000000000000000000000000000000000000409f9cbc7c4a04c220000000"
+                    ],
+                    "data": "0x",
+                    "blockNumber": "0xe",
+                    "transactionHash": "0x893987db9ab8033c1f8d05fb256f979b62fc932ca5b09eec12ef9ddacf53776d",
+                    "transactionIndex": "0x0",
+                    "blockHash": "0xdb1662207b6c3f9114accdd5195d8e49cc1ea3fa27c8941827206d1a724850c5",
+                    "logIndex": "0x0",
+                    "removed": false
+                }]
+            ]
+        }
+    },
+    "examples": [{
+        "jsonrpc": "2.0",
+        "id": "0x4d",
+        "result": [{
+            "address": "0x78bc89afcb4c804e5013948e63dabf055e6ac076",
+            "topics": [
+                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "0x00000000000000000000000067b1d87101671b127f5f8714789c7192f7ad340e",
+                "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                "0x0000000000000000000000000000000000000000409f9cbc7c4a04c220000000"
+            ],
+            "data": "0x",
+            "blockNumber": "0xe",
+            "transactionHash": "0x893987db9ab8033c1f8d05fb256f979b62fc932ca5b09eec12ef9ddacf53776d",
+            "transactionIndex": "0x0",
+            "blockHash": "0xdb1662207b6c3f9114accdd5195d8e49cc1ea3fa27c8941827206d1a724850c5",
+            "logIndex": "0x0",
+            "removed": false
+        }]
+    }]
+}

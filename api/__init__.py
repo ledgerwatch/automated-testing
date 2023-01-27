@@ -1,3 +1,3 @@
 import os
 
-schema_path = f'{os.path.dirname(__file__)}/schemas'
+schema_path = os.path.join(os.path.dirname(__file__), 'schemas')

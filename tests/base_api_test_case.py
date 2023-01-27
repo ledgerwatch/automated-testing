@@ -1,5 +1,6 @@
 import json
 import logging
+import os.path
 
 import jsonschema
 import requests
@@ -31,11 +32,7 @@ class BaseApiTestCase:
         logging.info(f"Got response:\n {response.content}")
         return response
 
-    def validate_schema(self, response, file_name):
-        path = f"{schema_path}/{file_name}.json"
-        with open(path, "r", encoding='utf-8') as schema:
-            # try:
-            response = response.json()
-            # except AttributeError:
-            #     pass
-            jsonschema.validate(instance=response, schema=json.load(schema))
+    @staticmethod
+    def validate_schema(response, file_name):
+        with open(os.path.join(schema_path, file_name + ".json"), "r", encoding='utf-8') as schema:
+            jsonschema.validate(instance=response.json(), schema=json.load(schema))

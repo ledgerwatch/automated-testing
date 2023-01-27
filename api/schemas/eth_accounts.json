@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "error",
+        "id",
+        "jsonrpc"
+    ],
+    "properties": {
+        "error": {
+            "type": "object",
+            "default": {},
+            "title": "The error Schema",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "const": -32000,
+                    "title": "The code Schema"
+                },
+                "message": {
+                    "type": "string",
+                    "const": "the method has been deprecated: eth_accounts",
+                    "title": "The message Schema"
+                }
+            },
+            "examples": [{
+                "code":
+                    -32000,
+                "message": "the method has been deprecated: eth_accounts"
+            }]
+        },
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        }
+    },
+    "examples": [{
+        "error": {
+            "code":
+                -32000,
+            "message": "the method has been deprecated: eth_accounts"
+        },
+        "id": "0x4d",
+        "jsonrpc": "2.0"
+    }]
+}

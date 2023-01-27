@@ -1,0 +1,43 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "jsonrpc",
+        "id",
+        "result"
+    ],
+    "properties": {
+        "jsonrpc": {
+            "type": "string",
+            "default": "",
+            "title": "The jsonrpc Schema",
+            "examples": [
+                "2.0"
+            ]
+        },
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "0x4d"
+            ]
+        },
+        "result": {
+            "type": "string",
+            "default": "",
+            "title": "The result Schema",
+            "examples": [
+                "0x1"
+            ]
+        }
+    },
+    "examples": [{
+        "jsonrpc": "2.0",
+        "id": "0x4d",
+        "result": "0x1"
+    }]
+}
